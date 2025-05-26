@@ -1,7 +1,7 @@
 with open('./input.txt', 'r') as f:
   input = f.read()
 
-print(input)
+#print(input)
 
 def fibonacci_div_by_3(n_str):
     try:
