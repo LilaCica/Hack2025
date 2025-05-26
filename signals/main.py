@@ -3,40 +3,38 @@ with open('./input.txt', 'r') as f:
 
 print(input)
 
-def decode_signals(days):
-    from collections import defaultdict
+def decode_signals(input_data):
+    code_to_possible_events = {}
 
-    possible = defaultdict(set)  # kód -> lehetséges események
-
-    # 1. Gyűjtés: minden kódhoz felvesszük a potenciális eseményeket
-    for codes, events in days:
-        for code in codes:
-            if code in possible:
-                possible[code] &= set(events)  # Metszet: csak a közösek maradnak
+    for codes_today, events_today in input_data:
+        events_set = set(events_today)
+        for code in codes_today:
+            if code not in code_to_possible_events:
+                code_to_possible_events[code] = events_set.copy()
             else:
-                possible[code] = set(events)
+                code_to_possible_events[code] = code_to_possible_events[code].intersection(events_set)
 
-    final_mapping = {}
+    decoded_map = {}
+    codes_to_decode = set(code_to_possible_events.keys())
 
-    # 2. Fokozatos szűkítés – amíg van új egyértelmű megfejtés
-    while possible:
-        # Azok a kódok, amelyeknek már csak 1 lehetséges eseményük van
-        resolved = {code: list(events)[0] for code, events in possible.items() if len(events) == 1}
+    while codes_to_decode:
+        new_single_mappings_found = False
+        
+        for code in list(codes_to_decode):
+            if len(code_to_possible_events[code]) == 1:
+                event = code_to_possible_events[code].pop()
+                decoded_map[code] = event
+                codes_to_decode.remove(code)
+                new_single_mappings_found = True
+                
+                for other_code in codes_to_decode:
+                    if event in code_to_possible_events[other_code]:
+                        code_to_possible_events[other_code].remove(event)
+        
+        if not new_single_mappings_found and codes_to_decode:
+            break
 
-        if not resolved:
-            break  # nincs további egyértelmű megfejtés
-
-        # Frissítjük a végleges megfejtést
-        for code, event in resolved.items():
-            final_mapping[code] = event
-            del possible[code]
-
-        # Eseményt eltávolítjuk a többi kód lehetséges értékei közül
-        for event in resolved.values():
-            for code in possible:
-                possible[code].discard(event)
-
-    return final_mapping
-
-decoded = decode_signals(input)
-print(decoded)
+    return decoded_map
+    
+    decoded_result = decode_signals(input)
+    print(decoded_result)
