@@ -1,0 +1,193 @@
+Gemini:
+
+# A 7 matematikai feladat megoldásainak levezetése:
+
+# 1. feladat: Kör sugara
+# A képen egy négyzetbe írt kör látható. Egy 1x2-es téglalap van kivágva a jobb felső sarokból,
+# és a sarokcsúcsa a körön fekszik.
+
+# Jelölje R a kör sugarát.
+# A négyzet oldalhossza 2R.
+# Helyezzünk egy koordináta-rendszert a négyzet bal alsó sarkába (0,0).
+# Ekkor a kör középpontja (R, R).
+# A jobb felső sarok (2R, 2R).
+
+# A körön fekvő pont, ahol a kis téglalap érinti, a négyzet jobb felső sarkától
+# 1 egységnyire balra és 2 egységnyire lefelé található.
+# Tehát a pont koordinátái: (2R - 1, 2R - 2).
+
+# A kör egyenlete: (x - R)^2 + (y - R)^2 = R^2
+# Helyettesítsük be a pont koordinátáit:
+# ((2R - 1) - R)^2 + ((2R - 2) - R)^2 = R^2
+# (R - 1)^2 + (R - 2)^2 = R^2
+
+# Bontsuk fel a zárójeleket:
+# (R^2 - 2R + 1) + (R^2 - 4R + 4) = R^2
+# 2R^2 - 6R + 5 = R^2
+
+# Rendezve az egyenletet:
+# R^2 - 6R + 5 = 0
+
+# Másodfokú egyenlet megoldása (faktorálással):
+# (R - 1)(R - 5) = 0
+# R1 = 1, R2 = 5
+
+# Ellenőrzés:
+# Ha R=1, a négyzet oldala 2. A pont (2*1 - 1, 2*1 - 2) = (1, 0).
+# Ez a pont a négyzet alsó élén van, ami ellentmond az ábrának, ahol a pont a jobb felső negyedben van.
+# Az ábra alapján a 2R-2 y-koordinátának nagyobbnak kell lennie, mint R, azaz R > 2.
+# Ha R=5, a négyzet oldala 10. A pont (2*5 - 1, 2*5 - 2) = (9, 8).
+# A kör középpontja (5,5). Ellenőrizzük az egyenlettel: (9-5)^2 + (8-5)^2 = 4^2 + 3^2 = 16 + 9 = 25.
+# R^2 = 5^2 = 25. Ez konzisztens.
+# Az R=5 kielégíti az R > 2 feltételt.
+# Eredmény 1: 5
+
+# 2. feladat: 4^x + 6^x = 9^x megoldása
+# Osszuk el az egész egyenletet 9^x-nel (mivel 9^x != 0):
+# (4/9)^x + (6/9)^x = 1
+# ( (2/3)^2 )^x + (2/3)^x = 1
+# (2/3)^(2x) + (2/3)^x = 1
+
+# Vezessünk be egy új változót: y = (2/3)^x
+# y^2 + y - 1 = 0
+
+# Használjuk a másodfokú megoldóképletet:
+# y = (-1 ± sqrt(1^2 - 4*1*(-1))) / (2*1)
+# y = (-1 ± sqrt(1 + 4)) / 2
+# y = (-1 ± sqrt(5)) / 2
+
+# Mivel y = (2/3)^x, y-nak pozitívnak kell lennie. Tehát a pozitív gyököt vesszük:
+# y = (sqrt(5) - 1) / 2
+
+# Helyettesítsük vissza:
+# (2/3)^x = (sqrt(5) - 1) / 2
+
+# Logaritmáljuk mindkét oldalt (pl. természetes logaritmussal):
+# x * ln(2/3) = ln( (sqrt(5) - 1) / 2 )
+# x = ln( (sqrt(5) - 1) / 2 ) / ln(2/3)
+
+# Numerikus érték:
+# sqrt(5) kb. 2.236067977
+# (sqrt(5) - 1) / 2 kb. 0.6180339885
+# ln(0.6180339885) kb. -0.481211825
+# ln(2/3) kb. -0.405465108
+# x kb. -0.481211825 / -0.405465108 kb. 1.186803875
+
+# Eredmény 2: 1.186803875 (vagy az exakt logaritmikus kifejezés)
+
+# 3. feladat: Kifejezés értékének kiszámítása
+# 1/(sqrt(1)+sqrt(2)) + 1/(sqrt(2)+sqrt(3)) + ... + 1/(sqrt(99)+sqrt(100))
+
+# Ez egy teleszkopikus összeg. Racionalizáljuk az általános tagot:
+# 1/(sqrt(n)+sqrt(n+1)) * (sqrt(n+1)-sqrt(n))/(sqrt(n+1)-sqrt(n))
+# = (sqrt(n+1)-sqrt(n)) / ((n+1) - n)
+# = sqrt(n+1) - sqrt(n)
+
+# Alkalmazva a sorozatra:
+# (sqrt(2) - sqrt(1)) +
+# (sqrt(3) - sqrt(2)) +
+# (sqrt(4) - sqrt(3)) +
+# ... +
+# (sqrt(100) - sqrt(99))
+
+# A közbülső tagok kiejtik egymást, csak az első és utolsó marad:
+# -sqrt(1) + sqrt(100)
+# = -1 + 10
+# = 9
+
+# Eredmény 3: 9
+
+# 4. feladat: (n^2)^n - 2n^n + 1 = 0 megoldása
+# Az egyenlet átírható a következőképpen:
+# (n^n)^2 - 2*(n^n) + 1 = 0
+
+# Legyen x = n^n. Ekkor az egyenlet:
+# x^2 - 2x + 1 = 0
+
+# Ez egy teljes négyzet:
+# (x - 1)^2 = 0
+
+# Tehát:
+# x - 1 = 0
+# x = 1
+
+# Visszahelyettesítve:
+# n^n = 1
+
+# Ennek az egyenletnek a megoldása: n = 1.
+# (Megjegyzés: n=0 esetén 0^0, ami általában definiálatlan, vagy 1-nek veszik. n=-1 esetén (-1)^-1 = -1, ami nem 1.)
+
+# Eredmény 4: 1
+
+# 5. feladat: Az asztal magassága (cm-ben)
+# Jelölések:
+# T = asztal magassága
+# C = macska magassága
+# U = teknősbéka magassága
+
+# Az első kép alapján:
+# T + C - U = 170  (asztal + macska az asztalon - teknősbéka a földön)
+
+# A második kép alapján:
+# T + U - C = 130  (asztal + teknősbéka az asztalon - macska a földön)
+
+# Adjuk össze a két egyenletet:
+# (T + C - U) + (T + U - C) = 170 + 130
+# 2T = 300
+# T = 150
+
+# Eredmény 5: 150
+
+# 6. feladat: Három állat összsúlya (kg-ban)
+# Jelölések:
+# W_C = macska súlya
+# W_D = kutya súlya
+# W_M = egér súlya
+
+# A képek alapján felírt egyenletek:
+# 1) W_C + W_M = 10
+# 2) W_D + W_M = 20
+# 3) W_D + W_C = 24
+
+# Keresett érték: W_C + W_D + W_M
+
+# Adjuk össze mindhárom egyenletet:
+# (W_C + W_M) + (W_D + W_M) + (W_D + W_C) = 10 + 20 + 24
+# 2*W_C + 2*W_D + 2*W_M = 54
+# 2 * (W_C + W_D + W_M) = 54
+
+# Osszuk el 2-vel:
+# W_C + W_D + W_M = 54 / 2
+# W_C + W_D + W_M = 27
+
+# Eredmény 6: 27
+
+# 7. feladat: Anna nyerési esélye a kockajátékban
+# Anna és Balázs felváltva dobnak, Anna kezd. Aki először dob hatost, az nyer.
+# P(hatos) = p = 1/6
+# P(nem hatos) = q = 1 - p = 5/6
+
+# Anna nyerhet:
+# 1. körben: Anna dob 6-ot (p)
+# 2. körben: Anna nem 6-ot, Balázs nem 6-ot, Anna 6-ot (q * q * p = q^2 * p)
+# 3. körben: (q^2) * q^2 * p = q^4 * p
+# és így tovább.
+
+# Ez egy végtelen mértani sorozat összege:
+# P(Anna nyer) = p + q^2*p + q^4*p + ...
+# P(Anna nyer) = p * (1 + q^2 + q^4 + ...)
+
+# A zárójelben lévő sorozat egy végtelen mértani sorozat, ahol az első tag a=1, és a hányados r=q^2.
+# A végtelen mértani sorozat összege: S = a / (1 - r) (ha |r| < 1)
+# S = 1 / (1 - q^2)
+
+# Tehát:
+# P(Anna nyer) = p / (1 - q^2)
+# P(Anna nyer) = (1/6) / (1 - (5/6)^2)
+# P(Anna nyer) = (1/6) / (1 - 25/36)
+# P(Anna nyer) = (1/6) / ((36 - 25)/36)
+# P(Anna nyer) = (1/6) / (11/36)
+# P(Anna nyer) = (1/6) * (36/11)
+# P(Anna nyer) = 6/11
+
+# Eredmény 7: 6/11
