@@ -1,4 +1,4 @@
-print('1.:5')
+print('1.: 5')
 print('2.: [expression or approximate value]')
 print('3.: 9')
 print('4.: 1')
