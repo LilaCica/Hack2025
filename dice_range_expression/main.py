@@ -31,6 +31,12 @@ def dice_range_expression(min_val, max_val):
     else:
         return "N/A"
 
-print(dice_range_expression(2, 5))      # ➜ 1d4+1
-print(dice_range_expression(1, 23))     # ➜ 1d4+1d20-1
-print(dice_range_expression(5, 10))     # ➜ 1d6+4
+
+# Soronként feldolgozzuk
+for line in input.strip().split('\n'):
+    parts = line.strip().split()
+    if len(parts) != 2:
+        continue
+    min_val, max_val = map(int, parts)
+    expr = dice_range_expression(min_val, max_val)
+    print(expr)
